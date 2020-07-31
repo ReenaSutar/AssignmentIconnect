@@ -14,7 +14,7 @@ public class DayRange {
 
 	public static final String delimter = ",";
 	public static int HighColumn = 3, LowColumn = 4;
-
+	public static List<String> rangeArr = new ArrayList<String>();
 	public static void read(String csvFile) {
 		try {
 			File file = new File(csvFile);
@@ -39,7 +39,7 @@ public class DayRange {
 		try {
 			List<Double> highArr = new ArrayList<Double>();
 			List<Double> lowArr = new ArrayList<Double>();
-			List<Double> rangeArr = new ArrayList<Double>();
+			
 			File file = new File(csvFile);
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
@@ -47,7 +47,7 @@ public class DayRange {
 			String[] strArr;
 			long lines = 0;
 			String tempHigh = "", tempLow = "";
-			double high = 0, low = 0, tempRange[];
+			double high = 0, low = 0, tempRange;
 
 			while ((str = br.readLine()) != null) {
 				strArr = str.split(delimter);
@@ -59,14 +59,17 @@ public class DayRange {
 				} catch (Exception e) {
 					continue;
 				}
-				System.out.print("high :" + high);
-				System.out.print("low :" + low);
+				//System.out.print("high :" + high);
+				//System.out.print("low :" + low);
 				
-				System.out.println((high - low));
-				System.out.println();
-
+				tempRange=high - low;
+				String sRange=String.valueOf(tempRange);
+				rangeArr.add(sRange);
+//System.out.println();
 			}
-
+			for(String objS:rangeArr) {
+			System.out.println(objS);
+			}
 			br.close();
 
 		} catch (IOException ioexception) {
